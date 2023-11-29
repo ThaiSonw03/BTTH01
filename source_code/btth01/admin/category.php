@@ -10,7 +10,37 @@
     <link rel="stylesheet" href="css/style_login.css">
 </head>
 <body>
-    <?php include 'header_admin.php';?>
+<header>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 bg-white rounded">
+    <div class="container-fluid">
+      <div class="h3">
+        <a class="navbar-brand" href="#">Administration</a>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="./">Trang chủ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../index.php">Trang ngoài</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active fw-bold" href="category.php">Thể loại</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="author.php">Tác giả</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="article.php">Bài viết</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
@@ -26,26 +56,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Nhạc trữ tình</td>
-                            <td>
-                                <a href="edit_category.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Nhạc cách mạng</td>
-                            <td>
-                                <a href="edit_category.php?id=2"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
+                        <?php include 'list_category.php' ?>
                        
                     </tbody>
                 </table>

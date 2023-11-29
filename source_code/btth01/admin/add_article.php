@@ -41,30 +41,53 @@
         </div>
     </nav>
 </header>
+<?php
+$currentDateTime = date('Y-m-d H:i:s');
+?>
 <main class="container mt-5 mb-5">
     <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
     <div class="row">
         <div class="col-sm">
-            <a href="add_article.php" class="btn btn-success">Thêm mới</a>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Tiêu đề</th>
-                  <th scope="col">Tên bài hát</th>
-                  <th scope="col">Tóm tắt</th>
-                  <th scope="col">Nội dung</th>
-                  <th scope="col">Ngày viết</th>
-                  <th scope="col">Hình ảnh</th>
-                    <th>Sửa</th>
-                    <th>Xóa</th>
-                </tr>
-                </thead>
-                <tbody>
-                  <?php include 'list_article.php'?>
+            <h3 class="text-center text-uppercase fw-bold">Thêm mới bài viết</h3>
+            <form action="process_add_article.php" method="post">
+                <div class="input-group mt-3 mb-3">
+                    <span class="input-group-text" id="lblTitle">Tiêu đề</span>
+                    <input type="text" class="form-control" name="txtTitle" >
+                </div>
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblSongName">Tên bài hát</span>
+                <input type="text" class="form-control" name="txtSongName" >
+              </div>
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblIdCate">Mã thể loại</span>
+                <input type="text" class="form-control" name="txtIdCate" >
+              </div>
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblSummary">Tóm tắt</span>
+                <input type="text" class="form-control" name="txtSummary" >
+              </div>
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblContent">Nội dung</span>
+                <input type="text" class="form-control" name="txtContent" >
+              </div>
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblIdAut"">Mã tác giả</span>
+                <input type="text" class="form-control" name="txtIdAut" >
+              </div>
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblDate">Ngày viết</span>
+                <input type="text" class="form-control" name="txtDate" value="<?=$currentDateTime?>">
+              </div>
+                <div class="input-group mt-3 mb-3">
+                    <span class="input-group-text" id="lblImgArt">Hình ảnh</span>
+                    <input type="file" class="form-control" name="txtImgArt" src="">
+                </div>
 
-                </tbody>
-            </table>
+                <div class="form-group  float-end ">
+                    <input type="submit" value="Thêm" class="btn btn-success">
+                    <a href="category.php" class="btn btn-warning ">Quay lại</a>
+                </div>
+            </form>
         </div>
     </div>
 </main>

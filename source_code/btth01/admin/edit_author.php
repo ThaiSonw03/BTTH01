@@ -1,3 +1,7 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,44 +35,65 @@
                         <a class="nav-link " href="category.php">Thể loại</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="author.php">Tác giả</a>
+                        <a class="nav-link active fw-bold" href="author.php">Tác giả</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" href="article.php">Bài viết</a>
+                        <a class="nav-link" href="article.php">Bài viết</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
+<?php
+
+$id = $_GET['id'];
+
+$servername = "mariadb";
+$username = "root";
+$password = "your_password";
+$dbname = "BTTH01_CSE485";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $sql = "SELECT * FROM tacgia WHERE ma_tgia = $id ";
+    $stmt = $conn->query($sql);
+    $author = $stmt->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+?>
 <main class="container mt-5 mb-5">
     <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
     <div class="row">
         <div class="col-sm">
-            <a href="add_article.php" class="btn btn-success">Thêm mới</a>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Tiêu đề</th>
-                  <th scope="col">Tên bài hát</th>
-                  <th scope="col">Tóm tắt</th>
-                  <th scope="col">Nội dung</th>
-                  <th scope="col">Ngày viết</th>
-                  <th scope="col">Hình ảnh</th>
-                    <th>Sửa</th>
-                    <th>Xóa</th>
-                </tr>
-                </thead>
-                <tbody>
-                  <?php include 'list_article.php'?>
+            <h3 class="text-center text-uppercase fw-bold">Sửa thông tin thể loại</h3>
+            <form action="fig_information_author.php" method="post">
+                <div class="input-group mt-3 mb-3">
+                    <span class="input-group-text" id="lblAutId">Mã tác giả</span>
+                    <input type="text" class="form-control" name="txtAutId" id="txtAutId" readonly value="<?=$id?>">
+                </div>
 
-                </tbody>
-            </table>
+                <div class="input-group mt-3 mb-3">
+                    <span class="input-group-text" id="lblAutNameUpdate">Tên tác giả</span>
+                    <input type="text" class="form-control" name="txtAutNameUpdate" id="txtAutNameUpdate" value = "<?=$author['ten_tgia']?>">
+                </div>
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblImgAut">Ảnh tác giả</span>
+                <input type="file" class="form-control" name="txtImgAut" id="txtImgAut" src="<?=$author['hinh_tgia']?>">
+              </div>
+
+                <div class="form-group  float-end ">
+                    <input type="submit" value="Lưu lại" class="btn btn-success">
+                    <a href="author.php" class="btn btn-warning ">Quay lại</a>
+                </div>
+            </form>
         </div>
     </div>
 </main>
-<?php include '../footer.php';?>
+<footer class="bg-white d-flex justify-content-center align-items-center border-top border-secondary  border-2" style="height:80px">
+    <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

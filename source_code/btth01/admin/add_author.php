@@ -31,10 +31,10 @@
                         <a class="nav-link " href="category.php">Thể loại</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="author.php">Tác giả</a>
+                        <a class="nav-link active fw-bold" href="author.php">Tác giả</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" href="article.php">Bài viết</a>
+                        <a class="nav-link" href="article.php">Bài viết</a>
                     </li>
                 </ul>
             </div>
@@ -45,26 +45,22 @@
     <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
     <div class="row">
         <div class="col-sm">
-            <a href="add_article.php" class="btn btn-success">Thêm mới</a>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Tiêu đề</th>
-                  <th scope="col">Tên bài hát</th>
-                  <th scope="col">Tóm tắt</th>
-                  <th scope="col">Nội dung</th>
-                  <th scope="col">Ngày viết</th>
-                  <th scope="col">Hình ảnh</th>
-                    <th>Sửa</th>
-                    <th>Xóa</th>
-                </tr>
-                </thead>
-                <tbody>
-                  <?php include 'list_article.php'?>
+            <h3 class="text-center text-uppercase fw-bold">Thêm mới thể loại</h3>
+            <form action="process_add_author.php" method="post">
+                <div class="input-group mt-3 mb-3">
+                    <span class="input-group-text" id="lblAutName">Tên tác giả</span>
+                    <input type="text" class="form-control" name="txtAutName" >
+                </div>
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblAutImg">Tên tác giả</span>
+                <input type="file" class="form-control" name="txtAutImg" src="">
+              </div>
 
-                </tbody>
-            </table>
+                <div class="form-group  float-end ">
+                    <input type="submit" value="Thêm" class="btn btn-success">
+                    <a href="category.php" class="btn btn-warning ">Quay lại</a>
+                </div>
+            </form>
         </div>
     </div>
 </main>

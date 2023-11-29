@@ -1,0 +1,122 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music for Life</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style_login.css">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 bg-white rounded">
+        <div class="container-fluid">
+            <div class="h3">
+                <a class="navbar-brand" href="#">Administration</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="./">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.php">Trang ngoài</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="category.php">Thể loại</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="author.php">Tác giả</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fw-bold" href="article.php">Bài viết</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<?php
+
+$id = $_GET['id'];
+
+$servername = "mariadb";
+$username = "root";
+$password = "your_password";
+$dbname = "BTTH01_CSE485";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $sql = "SELECT * FROM baiviet WHERE ma_bviet = $id ";
+    $stmt = $conn->query($sql);
+    $articles = $stmt->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+?>
+<main class="container mt-5 mb-5">
+    <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
+    <div class="row">
+        <div class="col-sm">
+            <h3 class="text-center text-uppercase fw-bold">Sửa thông tin thể loại</h3>
+            <form action="fig_information_article.php" method="post">
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblArtId">Mã bài viết</span>
+                <input type="text" class="form-control" name="txtArtId" id="txtArtId" readonly value="<?=$id?>">
+              </div>
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblTitleUpdate">Tiêu đề</span>
+                <input type="text" class="form-control" name="txtTitleUpdate" value="<?=$articles['tieude']?>">
+              </div>
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblSongNameUpdate">Tên bài hát</span>
+                <input type="text" class="form-control" name="txtSongNameUpdate" value="<?=$articles['ten_bhat']?>">
+              </div>
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblIdCateUpdate">Mã thể loại</span>
+                <input type="text" class="form-control" name="txtIdCateUpdate" value="<?=$articles['ma_tloai']?>">
+              </div>
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblSummary">Tóm tắt</span>
+                <input type="text" class="form-control" name="txtSummaryUpdate" value="<?=$articles['tomtat']?>">
+              </div>
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblContentUpdate">Nội dung</span>
+                <input type="text" class="form-control" name="txtContentUpdate" value="<?=$articles['noidung']?>">
+              </div>
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblIdAutUpdate"">Mã tác giả</span>
+                <input type="text" class="form-control" name="txtIdAutUpdate" value="<?=$articles['ma_tgia']?>">
+              </div>
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblDateUpdate">Ngày viết</span>
+                <input type="text" class="form-control" name="txtDateUpdate" value="<?=$articles['ngayviet']?>">
+              </div>
+              <div class="input-group mt-3 mb-3">
+                <span class="input-group-text" id="lblImgArtUpdate">Hình ảnh</span>
+                <input type="file" class="form-control" name="txtImgArtUpdate" src="<?=$articles['hinhanh']?>">
+              </div>
+
+                <div class="form-group  float-end ">
+                    <input type="submit" value="Lưu lại" class="btn btn-success">
+                    <a href="author.php" class="btn btn-warning ">Quay lại</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<footer class="bg-white d-flex justify-content-center align-items-center border-top border-secondary  border-2" style="height:80px">
+    <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>
