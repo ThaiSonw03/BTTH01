@@ -23,7 +23,7 @@ foreach ($categorys as $category) :
         <a href="edit_category.php?id=<?=$category['ma_tloai']?>"><i class="fa-solid fa-pen-to-square"></i></a>
     </td>
     <td>
-        <a href=""><i class="fa-solid fa-trash"></i></a>
+        <a href="delete_category.php?id=<?=$category['ma_tloai']?>"><i class="fa-solid fa-trash"></i></a>
     </td>
 </tr>
 

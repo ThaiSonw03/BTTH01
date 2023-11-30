@@ -19,12 +19,12 @@ foreach ($authors as $author) :
     <tr>
         <th scope="row"><?=$count++?></th>
         <td><?=$author['ten_tgia']?></td>
-      <td><img src="<?=$author['hinh_tgia']?>" alt="hinhanh"/></td>
+        <td><img src="../upload/<?=$author['hinh_tgia']?>" alt="hinhanh"/></td>
         <td>
             <a href="edit_author.php?id=<?=$author['ma_tgia']?>"><i class="fa-solid fa-pen-to-square"></i></a>
         </td>
         <td>
-            <a href="" ><i class="fa-solid fa-trash" name="<?=$author['ma_tgia']?>"></i></a>
+            <a href="delete_author.php?id=<?=$author['ma_tgia']?>" ><i class="fa-solid fa-trash"></i></a>
         </td>
     </tr>
 

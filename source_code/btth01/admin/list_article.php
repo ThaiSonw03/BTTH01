@@ -28,7 +28,7 @@ foreach ($posts as $post) :
             <a href="edit_article.php?id=<?=$post['ma_bviet']?>"><i class="fa-solid fa-pen-to-square"></i></a>
         </td>
         <td>
-            <a href=""><i class="fa-solid fa-trash"></i></a>
+            <a href="delete_article.php?id=<?=$post['ma_bviet']?>"><i class="fa-solid fa-trash"></i></a>
         </td>
     </tr>
 
